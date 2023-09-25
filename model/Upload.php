@@ -8,7 +8,7 @@
         $this->dir_destino = $dir_destino;
     }
     private function getExtensao(){
-        $ext = explode('.', $this->arquivo['namew']);
+        $ext = explode('.', $this->arquivo['name']);
         return $extensao = strtolower(end($ext));
     }
     private function ehImagem($extensao): bool{
@@ -25,11 +25,9 @@
             if($this->ehImagem($extensao)){
                 $novo_nome = md5(time()).".$extensao";
                 $destino = "$this->dir_destino/$novo_nome";
-                 if (move_uploaded_file($this->arquivo['temp_name'], $destino)){
+                 if (move_uploaded_file($this->arquivo['tmp_name'], $destino)){
                     return $destino;
-
                 }
-
             }
             return false;
         }
